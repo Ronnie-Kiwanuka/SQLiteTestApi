@@ -15,5 +15,5 @@ Run the following commands in Package Manager Console (PMC)
 * Add-Migration InitialCreate
 * Update-Database
 
-++ The Add-Migration command scaffolds a migration to create the initial set of tables for the model. 
-++ The Update-Database command creates the database and applies the new migration to it.
+(The Add-Migration command scaffolds a migration to create the initial set of tables for the model. 
+ The Update-Database command creates the database and applies the new migration to it.)
