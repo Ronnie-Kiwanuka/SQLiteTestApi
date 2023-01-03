@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "pGVQOecDmjYdlDu359tOerRZ0xuLY32sNKOte5FbKUs=",
+  "Source": "SQLiteTestApi",
+  "BasePath": "_content/SQLiteTestApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
