@@ -7,6 +7,7 @@ namespace SQLiteTestApi.BusinessLogic
         public CountryResponse getCountries();
         public CountryResponse getCountryByCode(string countryCode);
         public ApiResponse saveCountry(Country country);
-        public ApiResponse removeCountry(Country country);
+        public ApiResponse removeCountry(string countryCode);
+        public ApiResponse updateCountryDetails(Country country);
     }
 }

@@ -102,13 +102,13 @@ namespace SQLiteTestApi.BusinessLogic
             return response;
         }
 
-        public ApiResponse removeCountry(Country country)
+        public ApiResponse removeCountry(string countryCode)
         {
             ApiResponse response = new ApiResponse();
             try
             {
                 Country? cc = db.Countries
-                                .FirstOrDefault(b => b.countryCode == country.countryCode);
+                                .FirstOrDefault(b => b.countryCode == countryCode);
 
                 if (cc != null)
                 {
@@ -117,25 +117,45 @@ namespace SQLiteTestApi.BusinessLogic
                     response.statusCode = StatusCodes.Status200OK.ToString();
                     response.statusMessage = "SUCCESS";
                     response.statusDescription = "THE COUNTRY HAS BEEN REMOVED SUCCESSFULLY";
-                    return response;
-                }
-                cc = db.Countries
-                                .FirstOrDefault(b => b.countryName == country.countryName);
-                if (cc != null)
-                {
-                    db.Remove(cc);
-                    db.SaveChanges();
-                    response.statusCode = StatusCodes.Status200OK.ToString();
-                    response.statusMessage = "SUCCESS";
-                    response.statusDescription = "THE COUNTRY HAS BEEN REMOVED SUCCESSFULLY";
-                    return response;    
                 }
                 else
                 {
-                    db.Add(country);
-                    db.SaveChanges();
                     response.statusCode = StatusCodes.Status404NotFound.ToString();
+                    response.statusMessage = "FAILED";
+                    response.statusDescription = "THE COUNTRY DOESN'T EXIST";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = StatusCodes.Status400BadRequest.ToString();
+                response.statusMessage = "FAILED";
+                response.statusDescription = ex.Message;
+            }
+            return response;
+        }
+
+        public ApiResponse updateCountryDetails(Country country)
+        {
+            ApiResponse response = new ApiResponse();
+            try
+            {
+                Country? cc = db.Countries
+                                .FirstOrDefault(b => b.countryId == country.countryId);
+
+                if (cc != null)
+                {
+                    cc.countryCode = country.countryCode;
+                    cc.countryName = country.countryName;
+                    cc.region= country.region;  
+                    db.SaveChanges();
+                    response.statusCode = StatusCodes.Status200OK.ToString();
                     response.statusMessage = "SUCCESS";
+                    response.statusDescription = "THE COUNTRY DETAILS HAVE BEEN UPDATED SUCCESSFULLY";
+                }
+                else
+                {
+                    response.statusCode = StatusCodes.Status404NotFound.ToString();
+                    response.statusMessage = "FAILED";
                     response.statusDescription = "THE COUNTRY DOESN'T EXIST";
                 }
             }

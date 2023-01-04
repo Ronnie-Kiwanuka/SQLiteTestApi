@@ -2,6 +2,6 @@
 {
     public class CountryResponse : ApiResponse
     {
-        public List<Country> countries { get; set; }
+        public List<Country>? countries { get; set; }
     }
 }

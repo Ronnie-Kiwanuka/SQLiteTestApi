@@ -37,9 +37,15 @@ namespace SQLiteTestApi.Controllers
         }
 
         [HttpPost("removeCountry")]
-        public ActionResult<ApiResponse> removeNewCountry(Country country)
+        public ActionResult<ApiResponse> removeNewCountry(string countryCode)
         {
-            return countryInterface.removeCountry(country);
+            return countryInterface.removeCountry(countryCode);
+        }
+
+        [HttpPost("updateCountry")]
+        public ActionResult<ApiResponse> updateCountry(Country country)
+        {
+            return countryInterface.updateCountryDetails(country);
         }
     }
 }
